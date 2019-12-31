@@ -27,7 +27,7 @@ touch ${Script_Local_Log}
 #===================
 #dockerのプロセス確認
 dockerPSdata=${script_tmp}/dockerPS.csv
-echo "start :${Script_Name}.sh" >　2>&1 >> ${Script_Local_Log}
+echo "start :${Script_Name}.sh" >> ${Script_Local_Log} 2>&1
 docker ps >> ${dockerPSdata}
 
 #dockerのプロセス確認のconfの読み取り
@@ -40,17 +40,17 @@ do
     if [[ "${line[1]}" = "${line2[0]}" ]]
     then
       #dockerからログをコピーする
-      echo "${line2[0]}_${line2[3]}_LogCopy" >　2>&1 >> ${Script_Local_Log}
-      docker cp ${line[0]}:${line2[1]}/${line2[2]} ${script_tmp}/ >　2>&1 >> ${Script_Local_Log}
+      echo "${line2[0]}_${line2[3]}_LogCopy" >> ${Script_Local_Log} 2>&1
+      docker cp ${line[0]}:${line2[1]}/${line2[2]} ${script_tmp}/ >> ${Script_Local_Log} 2>&1
 
       #dockerからコピーしたファイルを別の場所に移す
       if [ -e ${script_log}/${line2[0]} ]
       then
-        mv ${script_tmp}/${line2[2]}/${line2[3]}* ${script_log}/${line2[0]} >　2>&1 >> ${Script_Local_Log}
+        mv ${script_tmp}/${line2[2]}/${line2[3]} ${script_log}/${line2[0]} >> ${Script_Local_Log} 2>&1
       else
-        echo "not Dir"
-        mkdir ${script_log}/${line2[0]} >　2>&1 >> ${Script_Local_Log}
-        mv ${script_tmp}/${line2[2]}/${line2[3]}* ${script_log}/${line2[0]} >　2>&1 >> ${Script_Local_Log}
+        echo "not Dir" >> ${Script_Local_Log} 2>&1
+        mkdir ${script_log}/${line2[0]} >> ${Script_Local_Log} 2>&1
+        mv ${script_tmp}/${line2[2]}/${line2[3]} ${script_log}/${line2[0]} >> ${Script_Local_Log} 2>&1
       fi
     fi
   done<${Script_Local_Conf}
@@ -63,7 +63,7 @@ done<${dockerPSdata}
 #===================
 #end_Proc
 #===================
-echo "tmp File Delet" >　2>&1 >> ${Script_Local_Log}
-rm -f ${dockerPSdata} >　2>&1 >> ${Script_Local_Log}
-rm -fr ${script_tmp}/* >　2>&1 >> ${Script_Local_Log}
-echo "End :${Script_Name}.sh" >　2>&1 >> ${Script_Local_Log}
+echo "tmp File Delet" >> ${Script_Local_Log} 2>&1
+rm -f ${dockerPSdata} >> ${Script_Local_Log} 2>&1
+rm -fr ${script_tmp}/* >> ${Script_Local_Log} 2>&1
+echo "End :${Script_Name}.sh" >> ${Script_Local_Log} 2>&1
