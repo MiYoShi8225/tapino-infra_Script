@@ -37,10 +37,11 @@ do
   #Docker_Log_Copyのconfファイルの読み取り
   while read -a line2
   do
-    if [[ "${line[1]}" = "${line2[0]}" ]]
+    Docker_imgname=${ECR_root}/${line2[0]}
+    if [[ "${line[1]}" == "${Docker_imgname}"* ]]
     then
       #dockerからログをコピーする
-      echo "${line2[0]}_${line2[3]}_LogCopy" >> ${Script_Local_Log} 2>&1
+      echo "Copy [ ${line2[3]}_LogCopy ] that exists in [ ${line2[0]} ]" >> ${Script_Local_Log} 2>&1
       docker cp ${line[0]}:${line2[1]}/${line2[2]} ${script_tmp}/ >> ${Script_Local_Log} 2>&1
 
       #dockerからコピーしたファイルを別の場所に移す
@@ -48,7 +49,7 @@ do
       then
         mv ${script_tmp}/${line2[2]}/${line2[3]} ${script_log}/${line2[0]} >> ${Script_Local_Log} 2>&1
       else
-        echo "not Dir" >> ${Script_Local_Log} 2>&1
+        echo "make Directory. Directory name is ${line2[0]} " >> ${Script_Local_Log} 2>&1
         mkdir ${script_log}/${line2[0]} >> ${Script_Local_Log} 2>&1
         mv ${script_tmp}/${line2[2]}/${line2[3]} ${script_log}/${line2[0]} >> ${Script_Local_Log} 2>&1
       fi
