@@ -51,7 +51,7 @@ do
       #repositoryのパスを格納する
       repoPath="${E_ECR_root}/${repoName}${verNum}"
 
-      if [ ${verNum} == ${line[0]} ]
+      if [ ${verNum} == ${line[2]} ]
       then
         #ECR情報を取得
         docker pull ${repoPath} >> ${Script_Local_Log} 2>&1
@@ -64,12 +64,15 @@ do
           if [ ${line2[1]} == "${repoName}"* ]
           then
             #dockerプロセスをストップさせる
-            docker stop ${line2[0]}
+            docker stop ${line2[6]}
+
+            #dockerスタート
+            docker run -d
           fi
         done<${dockerPSdata}
 
-        #docker起動
-        docker run -d -p 8080:8080
+        #docker起動(バックグラウンド)
+        docker run -d
 
         #docker imagesのデータをtmpに格納する
         docker images >> ${dockerImgdate}
@@ -82,7 +85,7 @@ do
 
         #confのバックアップとconfigの更新
         cp -p ${Script_Local_Conf} ${script_log}/${Script_Local_Conf}.`date '+%Y%m%d_%H%M%S'` >> ${Script_Local_Log} 2>&1
-        sed -e 's/${line[0]}  ${line[1]}/${line[0]} ${verNum}/g'.${Script_Local_Conf} >> ${Script_Local_Log} 2>&1
+        sed -e 's/${line[0]} ${line[2]}/${line[0]} ${verNum}/g'.${Script_Local_Conf} >> ${Script_Local_Log} 2>&1
 
       else
         #ECR情報を取得

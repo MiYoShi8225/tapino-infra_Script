@@ -38,7 +38,7 @@ do
   while read -a line2
   do
     Docker_imgname=${ECR_root}/${line2[0]}
-    if [[ "${line[1]}" == "${Docker_imgname}"* ]]
+    if [[ "${line[1]}" == *"${Docker_imgname}"* ]]
     then
       #dockerからログをコピーする
       echo "Copy [ ${line2[3]}_LogCopy ] that exists in [ ${line2[0]} ]" >> ${Script_Local_Log} 2>&1
