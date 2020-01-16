@@ -21,6 +21,7 @@ dockerImgdate=${E_script_tmp}/dockerImg.csv
 
 FLG_R=0
 FLG_V=0
+FLG_N=0
 #===================
 #start_proc
 #===================
@@ -33,7 +34,8 @@ do
   case $OPT in
     "r" ) FLG_R=1 ; repoName="${OPTARG}" ;;
     "v" ) FLG_V=1 ; verNum="${OPTARG}" ;;
-    * ) echo "option not setting [-r:Input repository name ] [-v:Input repository version]"
+    "n" ) FLG_N=1 ; newRepo="${OPTARG}" ;;
+    * ) echo "option not setting [-r:Input repository name ] [-v:Input repository version] [-n:Make new repository]"
     exit 1 ;;
   esac
 done
@@ -44,62 +46,48 @@ ${ECR_login}
 
 while read -a line
 do
-  if [ ${FLG_N} == 1]
+  if [ ${FLG_N} == 1 && ${FLG_V} == 1 ]
   then
-    if [ ${FLG_V} == 1 ]
+    #repositoryのパスを格納する
+    repoPath="${E_ECR_root}/${repoName}${verNum}"
+
+    if [ ${verNum} == ${line[2]} ]
     then
-      #repositoryのパスを格納する
-      repoPath="${E_ECR_root}/${repoName}${verNum}"
+      #ECR情報を取得
+      docker pull ${repoPath} >> ${Script_Local_Log} 2>&1
 
-      if [ ${verNum} == ${line[2]} ]
-      then
-        #ECR情報を取得
-        docker pull ${repoPath} >> ${Script_Local_Log} 2>&1
+      #dockerPSをtmpファイルに格納する
+      docker ps >> ${dockerPSdata}
 
-        #dockerPSをtmpファイルに格納する
-        docker ps >> ${dockerPSdata}
-
-        while read -a line2
-        do
-          if [ ${line2[1]} == "${repoName}"* ]
-          then
-            #dockerプロセスをストップさせる
-            docker stop ${line2[6]}
-
-            #dockerスタート
-            docker run -d
-          fi
-        done<${dockerPSdata}
-
-        #docker起動(バックグラウンド)
-        docker run -d
-
-        #docker imagesのデータをtmpに格納する
-        docker images >> ${dockerImgdate}
-
-        while read -a line2
-        do
-          if [${}]
-
-        done<${dockerImgdate}
-
-        #confのバックアップとconfigの更新
-        cp -p ${Script_Local_Conf} ${script_log}/${Script_Local_Conf}.`date '+%Y%m%d_%H%M%S'` >> ${Script_Local_Log} 2>&1
-        sed -e 's/${line[0]} ${line[2]}/${line[0]} ${verNum}/g'.${Script_Local_Conf} >> ${Script_Local_Log} 2>&1
-
-      else
-        #ECR情報を取得
-        docker pull ${repoPath} >> ${Script_Local_Log} 2>&1
-        if [$? == 0 ]
+      while read -a line2
+      do
+        if [ ${line2[1]} == "${repoName}"* ]
         then
-          echo "Execute Docker Release:[ repositoryName : ${repoName} ][ version: ${verNum} ]" >> ${Script_Local_Log} 2>&1
-          cp -p ${Script_Local_Conf} ${script_log}/${Script_Local_Conf}.`date '+%Y%m%d_%H%M%S'` >> ${Script_Local_Log} 2>&1
-          echo "${repoName}  ${verNum}" >>${Script_Local_Conf}
-          echo "config update" >>${Script_Local_Conf}
+          #dockerプロセスをストップさせる
+          docker stop ${line2[6]}
 
-        else
-　         echo "No exist ${repoName}${verNum}"
-      then
-      #statements
+          #dockerスタート
+          docker run -d ${line[1]} ${repoPath}${verNum}
+        fi
+      done<${dockerPSdata}
 
+      #docker起動(バックグラウンド)
+      docker run -d
+
+      #docker imagesのデータをtmpに格納する
+      docker images >> ${dockerImgdate}
+
+      while read -a line2
+      do
+        if [${}]
+
+      done<${dockerImgdate}
+
+      #confのバックアップとconfigの更新
+      cp -p ${Script_Local_Conf} ${script_log}/${Script_Local_Conf}.`date '+%Y%m%d_%H%M%S'` >> ${Script_Local_Log} 2>&1
+      sed -e 's/${line[0]} ${line[2]}/${line[0]} ${verNum}/g'.${Script_Local_Conf} >> ${Script_Local_Log} 2>&1
+
+  else
+
+  fi
 done<${Script_Local_Conf}
