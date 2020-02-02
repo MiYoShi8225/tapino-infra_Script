@@ -44,8 +44,8 @@ do
       echo "del [ ${line2[3]}_LogDel ] that exists in [ ${line2[0]} ]" >> ${Script_Local_Log} 2>&1
 
       #dockerLogin
-      echo ${line[2]}
-      docker exec -it ${line[6]} >> ${Script_Local_Log} 2>&1
+      echo ${line[11]}
+      docker exec -it ${line[11]} >> ${Script_Local_Log} 2>&1
       rm -f ${line2[1]}${line2[2]}/${line2[3]}
       #dockerLogout
       exit
