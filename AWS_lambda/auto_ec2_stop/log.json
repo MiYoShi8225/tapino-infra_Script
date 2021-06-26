@@ -1,0 +1,102 @@
+{'Reservations': [
+        {'Groups': [], 'Instances': [
+                {'AmiLaunchIndex': 0, 'ImageId': 'ami-06631ebafb3ae5d34', 'InstanceId': 'i-0f6346e686d4de982', 'InstanceType': 't2.micro', 'KeyName': 'mosuky', 'LaunchTime': datetime.datetime(2021,
+                    6,
+                    26,
+                    5,
+                    43,
+                    16, tzinfo=tzlocal()), 'Monitoring': {'State': 'disabled'
+                    }, 'Placement': {'AvailabilityZone': 'ap-northeast-1a', 'GroupName': '', 'Tenancy': 'default'
+                    }, 'PrivateDnsName': 'ip-172-31-38-195.ap-northeast-1.compute.internal', 'PrivateIpAddress': '172.31.38.195', 'ProductCodes': [], 'PublicDnsName': '', 'State': {'Code': 80, 'Name': 'stopped'
+                    }, 'StateTransitionReason': 'User initiated (2021-06-26 05: 54: 06 GMT)', 'SubnetId': 'subnet-2e72ad66', 'VpcId': 'vpc-1c120f7b', 'Architecture': 'x86_64', 'BlockDeviceMappings': [
+                        {'DeviceName': '/dev/xvda', 'Ebs': {'AttachTime': datetime.datetime(2021,
+                                6,
+                                26,
+                                5,
+                                43,
+                                17, tzinfo=tzlocal()), 'DeleteOnTermination': True, 'Status': 'attached', 'VolumeId': 'vol-0926fa3dd7d4fd422'
+                            }
+                        }
+                    ], 'ClientToken': '', 'EbsOptimized': False, 'EnaSupport': True, 'Hypervisor': 'xen', 'NetworkInterfaces': [
+                        {'Attachment': {'AttachTime': datetime.datetime(2021,
+                                6,
+                                26,
+                                5,
+                                43,
+                                16, tzinfo=tzlocal()), 'AttachmentId': 'eni-attach-0ae3ddf4f43ff159a', 'DeleteOnTermination': True, 'DeviceIndex': 0, 'Status': 'attached', 'NetworkCardIndex': 0
+                            }, 'Description': '', 'Groups': [
+                                {'GroupName': 'launch-wizard-1', 'GroupId': 'sg-038be6ffba54aed22'
+                                }
+                            ], 'Ipv6Addresses': [], 'MacAddress': '06:f1: 55: 34: 86: 35', 'NetworkInterfaceId': 'eni-0fb5d83ea151082ae', 'OwnerId': '515341273341', 'PrivateDnsName': 'ip-172-31-38-195.ap-northeast-1.compute.internal', 'PrivateIpAddress': '172.31.38.195', 'PrivateIpAddresses': [
+                                {'Primary': True, 'PrivateDnsName': 'ip-172-31-38-195.ap-northeast-1.compute.internal', 'PrivateIpAddress': '172.31.38.195'
+                                }
+                            ], 'SourceDestCheck': True, 'Status': 'in-use', 'SubnetId': 'subnet-2e72ad66', 'VpcId': 'vpc-1c120f7b', 'InterfaceType': 'interface'
+                        }
+                    ], 'RootDeviceName': '/dev/xvda', 'RootDeviceType': 'ebs', 'SecurityGroups': [
+                        {'GroupName': 'launch-wizard-1', 'GroupId': 'sg-038be6ffba54aed22'
+                        }
+                    ], 'SourceDestCheck': True, 'StateReason': {'Code': 'Client.UserInitiatedShutdown', 'Message': 'Client.UserInitiatedShutdown: User initiated shutdown'
+                    }, 'Tags': [
+                        {'Key': 'Name', 'Value': 'testec2'
+                        }
+                    ], 'VirtualizationType': 'hvm', 'CpuOptions': {'CoreCount': 1, 'ThreadsPerCore': 1
+                    }, 'CapacityReservationSpecification': {'CapacityReservationPreference': 'open'
+                    }, 'HibernationOptions': {'Configured': False
+                    }, 'MetadataOptions': {'State': 'applied', 'HttpTokens': 'optional', 'HttpPutResponseHopLimit': 1, 'HttpEndpoint': 'enabled'
+                    }, 'EnclaveOptions': {'Enabled': False
+                    }
+                }
+            ], 'OwnerId': '515341273341', 'ReservationId': 'r-0848026986a501303'
+        },
+        {'Groups': [], 'Instances': [
+                {'AmiLaunchIndex': 0, 'ImageId': 'ami-06631ebafb3ae5d34', 'InstanceId': 'i-06aec8ffbc0d6aef6', 'InstanceType': 't2.micro', 'KeyName': 'mosuky', 'LaunchTime': datetime.datetime(2021,
+                    6,
+                    26,
+                    5,
+                    53,
+                    54, tzinfo=tzlocal()), 'Monitoring': {'State': 'disabled'
+                    }, 'Placement': {'AvailabilityZone': 'ap-northeast-1a', 'GroupName': '', 'Tenancy': 'default'
+                    }, 'PrivateDnsName': 'ip-172-31-45-78.ap-northeast-1.compute.internal', 'PrivateIpAddress': '172.31.45.78', 'ProductCodes': [], 'PublicDnsName': 'ec2-54-250-254-35.ap-northeast-1.compute.amazonaws.com', 'PublicIpAddress': '54.250.254.35', 'State': {'Code': 16, 'Name': 'running'
+                    }, 'StateTransitionReason': '', 'SubnetId': 'subnet-2e72ad66', 'VpcId': 'vpc-1c120f7b', 'Architecture': 'x86_64', 'BlockDeviceMappings': [
+                        {'DeviceName': '/dev/xvda', 'Ebs': {'AttachTime': datetime.datetime(2021,
+                                6,
+                                26,
+                                5,
+                                53,
+                                55, tzinfo=tzlocal()), 'DeleteOnTermination': True, 'Status': 'attached', 'VolumeId': 'vol-0b941600caabc4bf9'
+                            }
+                        }
+                    ], 'ClientToken': '', 'EbsOptimized': False, 'EnaSupport': True, 'Hypervisor': 'xen', 'NetworkInterfaces': [
+                        {'Association': {'IpOwnerId': 'amazon', 'PublicDnsName': 'ec2-54-250-254-35.ap-northeast-1.compute.amazonaws.com', 'PublicIp': '54.250.254.35'
+                            }, 'Attachment': {'AttachTime': datetime.datetime(2021,
+                                6,
+                                26,
+                                5,
+                                53,
+                                54, tzinfo=tzlocal()), 'AttachmentId': 'eni-attach-049903bdd5364252f', 'DeleteOnTermination': True, 'DeviceIndex': 0, 'Status': 'attached', 'NetworkCardIndex': 0
+                            }, 'Description': '', 'Groups': [
+                                {'GroupName': 'launch-wizard-2', 'GroupId': 'sg-04bcc2365fcd1f44c'
+                                }
+                            ], 'Ipv6Addresses': [], 'MacAddress': '06: 56: 3c:ad:af: 7b', 'NetworkInterfaceId': 'eni-0d31ea1bcfb391615', 'OwnerId': '515341273341', 'PrivateDnsName': 'ip-172-31-45-78.ap-northeast-1.compute.internal', 'PrivateIpAddress': '172.31.45.78', 'PrivateIpAddresses': [
+                                {'Association': {'IpOwnerId': 'amazon', 'PublicDnsName': 'ec2-54-250-254-35.ap-northeast-1.compute.amazonaws.com', 'PublicIp': '54.250.254.35'
+                                    }, 'Primary': True, 'PrivateDnsName': 'ip-172-31-45-78.ap-northeast-1.compute.internal', 'PrivateIpAddress': '172.31.45.78'
+                                }
+                            ], 'SourceDestCheck': True, 'Status': 'in-use', 'SubnetId': 'subnet-2e72ad66', 'VpcId': 'vpc-1c120f7b', 'InterfaceType': 'interface'
+                        }
+                    ], 'RootDeviceName': '/dev/xvda', 'RootDeviceType': 'ebs', 'SecurityGroups': [
+                        {'GroupName': 'launch-wizard-2', 'GroupId': 'sg-04bcc2365fcd1f44c'
+                        }
+                    ], 'SourceDestCheck': True, 'VirtualizationType': 'hvm', 'CpuOptions': {'CoreCount': 1, 'ThreadsPerCore': 1
+                    }, 'CapacityReservationSpecification': {'CapacityReservationPreference': 'open'
+                    }, 'HibernationOptions': {'Configured': False
+                    }, 'MetadataOptions': {'State': 'applied', 'HttpTokens': 'optional', 'HttpPutResponseHopLimit': 1, 'HttpEndpoint': 'enabled'
+                    }, 'EnclaveOptions': {'Enabled': False
+                    }
+                }
+            ], 'OwnerId': '515341273341', 'ReservationId': 'r-0bd5cc77b6b3d1d9b'
+        }
+    ], 'ResponseMetadata': {'RequestId': 'e8a63f22-a355-416e-b125-119c6ea6de27', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amzn-requestid': 'e8a63f22-a355-416e-b125-119c6ea6de27', 'cache-control': 'no-cache, no-store', 'strict-transport-security': 'max-age=31536000; includeSubDomains', 'content-type': 'text/xml;charset=UTF-8', 'transfer-encoding': 'chunked', 'vary': 'accept-encoding', 'date': 'Sat,
+            26 Jun 2021 06: 03: 46 GMT', 'server': 'AmazonEC2'
+        }, 'RetryAttempts': 0
+    }
+}
